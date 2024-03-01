@@ -44,7 +44,7 @@ VALUES
     (1, '192.168.1.20', 'Device 1'),
     (2, '192.168.1.30', 'Device 2'),
     (3, '192.168.1.40', 'Device 3'),
-	(4, '192.168.1.50', 'Device 4');
+    (4, '192.168.1.50', 'Device 4');
 
 -- Insert dummy data into the DeviceCamera table
 INSERT INTO DeviceCamera (DeviceID, CameraNumber, Name)
