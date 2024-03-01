@@ -32,7 +32,7 @@ BEGIN
         [DeviceID] INT,
         [CameraNumber] INT,
         [Name] VARCHAR(255),
-		CONSTRAINT FK_DeviceID FOREIGN KEY (DeviceID)
+		CONSTRAINT FK_Device_Id FOREIGN KEY (DeviceID)
 		REFERENCES Device(DeviceID)
     );
 END;
