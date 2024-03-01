@@ -1,9 +1,9 @@
-﻿The Following SQL will create two tables in its MS SQL Database:
-● “Device” which contains a list of security devices and their connection details, with columns:
-    “DeviceID” (primary key), “IPAddress”, “Name”
-● “DeviceCamera” which contains a list of cameras connected to each device, with columns
-    “DeviceID” (foreign key), “CameraNumber”, “Name” For example, there may be a Device with
-two cameras on it, number 1 called “Front Door” and number 2 called “Back door”.
+﻿The Following SQL will create two tables in its MS SQL Database:  
+● “Device” which contains a list of security devices and their connection details, with columns:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “DeviceID” (primary key), “IPAddress”, “Name”  
+● “DeviceCamera” which contains a list of cameras connected to each device, with columns:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “DeviceID” (foreign key), “CameraNumber”, “Name”   
+For example, there may be a Device with two cameras on it, number 1 called “Front Door” and number 2 called “Back door”.  
 
 Then run the following queries to achieve the following:
 1. Get the camera details of all the cameras on device ID 1
