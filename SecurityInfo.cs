@@ -4,7 +4,7 @@ namespace ViewModels;
 
 public class SecurityInfo
 {
-    [Required]
+    [Required(ErrorMessage ="Please enter an input.")]
     public string UserInput { get; set; } = string.Empty;
 
     public int ServerNumber { get; set; }

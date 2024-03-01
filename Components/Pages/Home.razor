@@ -5,7 +5,7 @@
 <h1>SureView</h1>
 
 
-<EditForm Model="SIVM" OnValidSubmit="HandleSubmit">
+<EditForm id="" Model="SIVM" OnValidSubmit="HandleSubmit">
 
     <DataAnnotationsValidator />
 
@@ -13,25 +13,30 @@
     <ValidationMessage For="@(() => SIVM.UserInput)" />
     <br />
     <br />
-    <button type="submit" class="btn btn-primary">Pocess</button>
+    <button type="submit" disabled="@(!context.Validate() || !context.IsModified())" class="btn btn-primary">Pocess</button>
+    <br />
+    <br />
+    <span class="smart-badge smart-badge-success">Alrm id:  @SIVM.AlarmId.ToString() </span><br />
+    <span class="smart-badge smart-badge-success">Server Number:  @SIVM.ServerNumber.ToString()</span><br />
+    <span class="smart-badge smart-badge-danger">@Result</span><br />
 
 </EditForm>
-<br />
-<br />
-
-<span class="smart-badge smart-badge-success">Alrm id:  @SIVM.AlarmId.ToString() </span>
-<span class="smart-badge smart-badge-success">Server Number:  @SIVM.ServerNumber.ToString()</span>
 
 @code {
     private SecurityInfo SIVM = new SecurityInfo();
+    private string Result = "";
 
     public void HandleSubmit()
     {
-
-        SIVM.ServerNumber = ExtractServerNumber(SIVM.UserInput);
-        SIVM.AlarmId = ExtractAlarmNumber(SIVM.UserInput);
-
-
+        int SN  = ExtractServerNumber(SIVM.UserInput);
+        int AN = ExtractAlarmNumber(SIVM.UserInput);
+        Result = "";
+        SIVM.ServerNumber  = SN == -1 ? 0 : SN;
+        SIVM.AlarmId = AN == -1 ? 0 : AN;
+        if(SN == -1 && AN == -1)
+        {
+            Result = "Invalid message format";
+        }
     }
 
     public static int ExtractServerNumber(string message)
