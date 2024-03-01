@@ -1,0 +1,60 @@
+﻿@page "/"
+@using System.Text.RegularExpressions
+@using ViewModels;
+
+<h1>SureView</h1>
+
+
+<EditForm Model="SIVM" OnValidSubmit="HandleSubmit">
+
+    <DataAnnotationsValidator />
+
+    <InputText id="userInput" @bind-Value="SIVM.UserInput" class="form-control" type="text" />
+    <ValidationMessage For="@(() => SIVM.UserInput)" />
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Pocess</button>
+
+</EditForm>
+<br />
+<br />
+
+<span class="smart-badge smart-badge-success">Alrm id:  @SIVM.AlarmId.ToString() </span>
+<span class="smart-badge smart-badge-success">Server Number:  @SIVM.ServerNumber.ToString()</span>
+
+@code {
+    private SecurityInfo SIVM = new SecurityInfo();
+
+    public void HandleSubmit()
+    {
+
+        SIVM.ServerNumber = ExtractServerNumber(SIVM.UserInput);
+        SIVM.AlarmId = ExtractAlarmNumber(SIVM.UserInput);
+
+
+    }
+
+    public static int ExtractServerNumber(string message)
+    {
+        Regex regex = new Regex(@"number (\d+)");
+        Match match = regex.Match(message);
+        if (match.Success)
+        {
+            return int.Parse(match.Groups[1].Value);
+        }
+        return -1; // Return -1 if server number is not found
+    }
+
+    public static int ExtractAlarmNumber(string message)
+    {
+        Regex regex = new Regex(@"(?:is|id) (\d+)");
+        Match match = regex.Match(message);
+        if (match.Success)
+        {
+            return int.Parse(match.Groups[1].Value);
+        }
+        return -1; // Return -1 if alarm number is not found
+    }
+
+}
+
