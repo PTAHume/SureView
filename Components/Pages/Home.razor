@@ -16,10 +16,19 @@
     <button type="submit" disabled="@(!context.Validate() || !context.IsModified())" class="btn btn-primary">Pocess</button>
     <br />
     <br />
-    <span class="smart-badge smart-badge-success">Alrm id:  @SIVM.AlarmId.ToString() </span><br />
+    <span class="smart-badge smart-badge-success">Alarm id:  @SIVM.AlarmId.ToString() </span><br />
     <span class="smart-badge smart-badge-success">Server Number:  @SIVM.ServerNumber.ToString()</span><br />
     <span class="smart-badge smart-badge-danger">@Result</span><br />
 
+
+    <i class="table-info">
+    <pre> 
+        Enter the The alarm id and video server number <b>exsactly</b> in one of the following formates:
+        ● “The alarm id from video server number X is Y.”
+        ● “Alarm id Y has been received from video server number X.”
+        Where X (server number) and Y (alarm number) are integer values depending on the alarm
+    </pre>
+    </i>
 </EditForm>
 
 @code {
